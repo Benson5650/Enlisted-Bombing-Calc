@@ -12,7 +12,7 @@ import time
 
 # 初始化全局變量
 x, y = 0, 0
-ocr_lang = ['ch_sim', 'en'] #default language
+def_ocr_lang = ['ch_sim', 'en'] #default language
 selection = None 
 reader = None
 ocr_running = False
@@ -177,10 +177,10 @@ def main():
     # 初始化 easyOCR 
     if "ocr_language" in appsetting: 
         ocr_lang = appsetting['ocr_language'] 
-        reader = easyocr.Reader(ocr_lang)
+        
     else:
-        reader = easyocr.Reader(['ch_sim', 'en'])
-
+        ocr_lang = def_ocr_lang #use default language
+    reader = easyocr.Reader(ocr_lang)
     root = tk.Tk()
     root.geometry("300x200")
 

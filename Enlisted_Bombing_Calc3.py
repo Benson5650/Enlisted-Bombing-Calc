@@ -64,7 +64,7 @@ def capture_region(left, top, width, height):
     return screenshot
 
 def ocr():
-    global root, ocr_lang, selection, reader, failure_count
+    global root, selection, reader, failure_count
     if selection is None:
         return
     
@@ -168,9 +168,8 @@ def select_region():
     canvas = tk.Canvas(selection_win, bg='gray')
     canvas.pack(fill=tk.BOTH, expand=True)
 
-
 def main():
-    global root, region_label, reader, selection
+    global root, region_label, reader, selection, ocr_lang
 
     appsetting = load_config()
 

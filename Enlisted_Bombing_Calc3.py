@@ -113,6 +113,10 @@ def run_ocr():
 
 def toggle_ocr(): 
     global ocr_running 
+    if ocr_switch_var.get():
+        select_button.config(state=tk.DISABLED)
+    else:
+        select_button.config(state=tk.NORMAL) 
     if ocr_running: 
         ocr_running = False 
     else: 
@@ -169,7 +173,7 @@ def select_region():
     canvas.pack(fill=tk.BOTH, expand=True)
 
 def main():
-    global root, region_label, reader, selection, ocr_lang
+    global root, region_label, reader, selection, ocr_lang, ocr_switch_var, select_button
 
     appsetting = load_config()
 
@@ -203,7 +207,7 @@ def main():
     top.bind("<Button-1>", start_move_label)
     top.bind("<ButtonRelease-1>", stop_move_label)
     top.bind("<B1-Motion>", lambda event: do_move_label(event, top))
-    
+
     # 添加選取區域按鈕
     select_button = tk.Button(root, text="設定偵測區域", command=select_region)
     select_button.pack()
